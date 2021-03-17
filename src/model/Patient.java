@@ -15,4 +15,9 @@ public final class Patient extends Person{
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; Condition: " + condition;
+    }
 }

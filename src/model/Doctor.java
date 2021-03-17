@@ -25,4 +25,9 @@ public final class Doctor extends Person {
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; Salary: " + salary + "; Specialization: " + specialization;
+    }
 }

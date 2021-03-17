@@ -56,4 +56,7 @@ public class MedicalOffice {
     public void setAppointments(Appointment[] appointments) {
         this.appointments = appointments;
     }
+
+
+
 }

@@ -24,4 +24,13 @@ public class Prescription {
     public void setMedications(Medication[] medications) {
         this.medications = medications;
     }
+
+    @Override
+    public String toString() {
+        String str = "Date: " + date;
+        for (Medication m : medications) {
+            str += m.toString();
+            str += '\n';
+        return str;
+    }
 }
