@@ -31,8 +31,9 @@ public class Appointment {
 
     @Override
     public String toString() {
-        String str = "Date: " + date;
-        str += patient.toString() + '\n' + doctor.toString() + '\n' + prescription + '\n';
+        String str = "Date: " + date + '\n';
+        str += "Patient | " + patient.toString() + "\nDoctor | " + doctor.toString() + "\nPrescription | " + prescription + '\n';
+        return str;
     }
 
 }

@@ -39,4 +39,79 @@ public class MedicalOfficeService {
         appointmentService.addAppointment(medicalOffice, appointment);
     }
 
+    public Person searchPersonByFullName (MedicalOffice medicalOffice, String name, String surname) {
+        return personService.searchPersonByFullName(medicalOffice, name, surname);
+    }
+
+    public Doctor searchDoctorByFullName (MedicalOffice medicalOffice, String name, String surname) {
+        return doctorService.searchDoctorByFullName(medicalOffice, name, surname);
+    }
+
+    public Patient searchPatientByFullName (MedicalOffice medicalOffice, String name, String surname) {
+        return patientService.searchPatientByFullName(medicalOffice, name, surname);
+    }
+
+    public void updateName (Person person, String name) {
+        personService.updateName(person, name);
+    }
+
+    public void updateSurname (Person person, String surname) {
+        personService.updateSurname(person, surname);
+    }
+
+    public void updateAge (Person person, int age) {
+        personService.updateAge(person, age);
+    }
+
+    public void updateAddress (Person person, String address) {
+        personService.updateAddress(person, address);
+    }
+
+    public void updatePhoneNo (Person person, String phoneNo) {
+        personService.updatePhonNo(person, phoneNo);
+    }
+
+    public void updateSalary (Doctor doctor, double salary) {
+        doctorService.updateSalary(doctor, salary);
+    }
+
+    public void updateSpecialization (Doctor doctor, String specialization) {
+        doctorService.updateSpecialization(doctor,specialization);
+    }
+
+    public void updateCondition (Patient patient, String condition) {
+        patientService.updateCondition(patient, condition);
+    }
+
+    public void updateName (Medication medication, String name) {
+        medicationService.updateName(medication, name);
+    }
+
+    public void updatePrice (Medication medication, double price) {
+        medicationService.updatePrice(medication, price);
+    }
+
+    public void updateDate (Prescription prescription, String date) {
+        prescriptionService.updateDate(prescription, date);
+    }
+
+    public Boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
+        return prescriptionService.isMedicationOnPrescription(medication, prescription);
+    }
+
+    public void addMedicationToPrescription (Medication medication, Prescription prescription) {
+        prescriptionService.addMedicationToPrescription(medication, prescription);
+    }
+
+    public void updatePrescription (Appointment appointment, Prescription prescription) {
+        appointmentService.updatePrescription(appointment, prescription);
+    }
+
+    public int numberOfAppointmentsPerDoctor (MedicalOffice medicalOffice, Doctor doctor) {
+        return appointmentService.numberOfAppointmentsPerDoctor(medicalOffice, doctor);
+    }
+
+    public int numberOfPrescriptionPerMedication (MedicalOffice medicalOffice, Medication medication) {
+        return prescriptionService.numberOfPrescriptionPerMedication(medicalOffice, medication);
+    }
 }

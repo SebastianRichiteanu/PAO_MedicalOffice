@@ -8,6 +8,15 @@ public class MedicationService {
         int nextAvailableIndex = getNumberOfMedications(medicalOffice);
         medicalOffice.getMedications()[nextAvailableIndex] = medication;
     }
+
+    public void updateName (Medication medication, String name) {
+        medication.setName(name);
+    }
+
+    public void updatePrice (Medication medication, double price) {
+        medication.setPrice(price);
+    }
+
     private int getNumberOfMedications(MedicalOffice medicalOffice) {
         int numberOfMedications = 0;
         for (Medication m : medicalOffice.getMedications())

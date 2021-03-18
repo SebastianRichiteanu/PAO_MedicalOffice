@@ -28,9 +28,12 @@ public class Prescription {
     @Override
     public String toString() {
         String str = "Date: " + date;
-        for (Medication m : medications) {
-            str += m.toString();
-            str += '\n';
+        if (medications != null)
+            for (Medication m : medications)
+                if (m != null) {
+                    str += m.toString();
+                    str += '\n';
+                }
         return str;
     }
 }
