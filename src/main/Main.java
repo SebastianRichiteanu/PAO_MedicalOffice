@@ -32,28 +32,28 @@ public class Main {
 
         // Check if they are in "DB"
         System.out.println("People:");
-        System.out.println(medicalOffice.getPeople()[0].toString());
-        System.out.println(medicalOffice.getPeople()[1].toString());
-        System.out.println(medicalOffice.getPeople()[2].toString());
+        System.out.println(medicalOffice.getPeople()[0]);
+        System.out.println(medicalOffice.getPeople()[1]);
+        System.out.println(medicalOffice.getPeople()[2]);
         System.out.println("Doctor:");
-        System.out.println(medicalOffice.getDoctors()[0].toString());
+        System.out.println(medicalOffice.getDoctors()[0]);
         System.out.println("Patient:");
-        System.out.println(medicalOffice.getPatients()[0].toString());
+        System.out.println(medicalOffice.getPatients()[0]);
         System.out.println("Medication:");
-        System.out.println(medicalOffice.getMedications()[0].toString());
+        System.out.println(medicalOffice.getMedications()[0]);
         System.out.println("Prescription:");
-        System.out.println(medicalOffice.getPrescriptions()[0].toString());
+        System.out.println(medicalOffice.getPrescriptions()[0]);
         System.out.println("Appointment:");
-        System.out.println(medicalOffice.getAppointments()[0].toString());
+        System.out.println(medicalOffice.getAppointments()[0]);
 
         // Search by FullName
 
         System.out.println("PersonByFullName:");
-        System.out.println(medicalOfficeService.searchPersonByFullName(medicalOffice,"person_name","person_surname").toString());
+        System.out.println(medicalOfficeService.searchPersonByFullName(medicalOffice,"person_name","person_surname"));
         System.out.println("DoctorByFullName:");
-        System.out.println(medicalOfficeService.searchDoctorByFullName(medicalOffice, "doctor_name", "doctor_surname").toString());
+        System.out.println(medicalOfficeService.searchDoctorByFullName(medicalOffice, "doctor_name", "doctor_surname"));
         System.out.println("PatientByFullName:");
-        System.out.println(medicalOfficeService.searchPatientByFullName(medicalOffice,"patient_name","patient_surname").toString());
+        System.out.println(medicalOfficeService.searchPatientByFullName(medicalOffice,"patient_name","patient_surname"));
 
         // Update
 
@@ -69,9 +69,9 @@ public class Main {
         medicalOfficeService.updateCondition(patient,"condition2");
 
         System.out.println("New People:");
-        System.out.println(medicalOffice.getPeople()[0].toString());
-        System.out.println(medicalOffice.getPeople()[1].toString());
-        System.out.println(medicalOffice.getPeople()[2].toString());
+        System.out.println(medicalOffice.getPeople()[0]);
+        System.out.println(medicalOffice.getPeople()[1]);
+        System.out.println(medicalOffice.getPeople()[2]);
 
             // Medication
 
@@ -79,14 +79,14 @@ public class Main {
         medicalOfficeService.updatePrice(medication, 999);
 
         System.out.println("New Medication:");
-        System.out.println(medicalOffice.getMedications()[0].toString());
+        System.out.println(medicalOffice.getMedications()[0]);
 
             // Prescription
 
         medicalOfficeService.updateDate(prescription,"prescription_date2");
 
         System.out.println("New Prescription:");
-        System.out.println(medicalOffice.getPrescriptions()[0].toString());
+        System.out.println(medicalOffice.getPrescriptions()[0]);
 
 
         // Add medication to prescription + check
@@ -112,6 +112,20 @@ public class Main {
         medicalOfficeService.addMedicationToPrescription(medication, prescription1);
         System.out.println(medicalOfficeService.numberOfPrescriptionPerMedication(medicalOffice, medication));
 
+        // Add new doctors to "test" the sorted array
+
+        Doctor doctor1 = new Doctor ("doctor1_name","doctor1_surname",1,"doctor1_address","doctor1_phone",1,"special1");
+        medicalOfficeService.addDoctor(medicalOffice, doctor1);
+        Doctor doctor2 = new Doctor ("doctor2_name","doctor2_surname",2,"doctor2_address","doctor2_phone",2,"special2");
+        medicalOfficeService.addDoctor(medicalOffice, doctor2);
+
+
+        for (Doctor d : medicalOffice.getDoctors()) {
+            if (d != null)
+                System.out.println(d);
+
+
+        }
 
     }
 
