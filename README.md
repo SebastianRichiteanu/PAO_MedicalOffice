@@ -1,9 +1,9 @@
 # PAO_MedicalOffice
 
 1. Main
-2. Person (name, surname, age, address, phone no) => </br>
-	3. Doctor (salary, specialization) </br>
-	4. Patient(condition)
+2. Person (name, surname, age, address, phone no) 
+3. Doctor (salary, specialization)  extends Person
+4. Patient(condition)  extends Person
 5. Medication (name, price)
 6. Prescription (date, medication[])
 7. Appointment (pacient, doctor, prescription, date)
