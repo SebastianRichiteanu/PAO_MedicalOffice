@@ -8,6 +8,7 @@ public class MedicalOffice {
     private Medication[] medications = new Medication[length];
     private Prescription[] prescriptions = new Prescription[length];
     private Appointment[] appointments = new Appointment[length];
+    private Supplier[] suppliers = new Supplier[length];
 
     public Person[] getPeople() {
         return people;
@@ -57,6 +58,7 @@ public class MedicalOffice {
         this.appointments = appointments;
     }
 
+    public Supplier[] getSuppliers() { return suppliers; }
 
-
+    public void setSuppliers(Supplier[] suppliers) { this.suppliers = suppliers; }
 }

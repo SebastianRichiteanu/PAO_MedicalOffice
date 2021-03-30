@@ -21,7 +21,10 @@ public class Main {
         Patient patient = new Patient("patient_name","patient_surname",3,"patient_address","patient_phone","condition");
         medicalOfficeService.addPatient(medicalOffice, patient);
 
-        Medication medication = new Medication("medication_name",4);
+        Supplier supplier = new Supplier("supplier_name","supplier_location");
+        medicalOfficeService.addSupplier(medicalOffice, supplier);
+
+        Medication medication = new Medication("medication_name",4, supplier);
         medicalOfficeService.addMedication(medicalOffice, medication);
 
         Prescription prescription = new Prescription("prescription_date",new Medication[100]);
@@ -45,6 +48,8 @@ public class Main {
         System.out.println(medicalOffice.getPrescriptions()[0]);
         System.out.println("Appointment:");
         System.out.println(medicalOffice.getAppointments()[0]);
+        System.out.println("Supplier:");
+        System.out.println(medicalOffice.getSuppliers()[0]);
 
         // Search by FullName
 

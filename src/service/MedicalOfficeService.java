@@ -12,6 +12,7 @@ public class MedicalOfficeService {
     private final MedicationService medicationService = new MedicationService();
     private final PrescriptionService prescriptionService = new PrescriptionService();
     private final AppointmentService appointmentService = new AppointmentService();
+    private final SupplierService supplierService = new SupplierService();
 
     public void addPerson (MedicalOffice medicalOffice, Person person) {
         personService.addPerson(medicalOffice, person);
@@ -37,6 +38,10 @@ public class MedicalOfficeService {
 
     public void addAppointment (MedicalOffice medicalOffice, Appointment appointment) {
         appointmentService.addAppointment(medicalOffice, appointment);
+    }
+
+    public void addSupplier (MedicalOffice medicalOffice, Supplier supplier) {
+        supplierService.addSupplier(medicalOffice, supplier);
     }
 
     public Person searchPersonByFullName (MedicalOffice medicalOffice, String name, String surname) {
@@ -94,6 +99,10 @@ public class MedicalOfficeService {
     public void updateDate (Prescription prescription, String date) {
         prescriptionService.updateDate(prescription, date);
     }
+
+    public void updateName (Supplier supplier, String name) { supplierService.updateName(supplier, name); }
+
+    public void updateLocation (Supplier supplier, String location) { supplierService.updateLocation(supplier, location); }
 
     public Boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
         return prescriptionService.isMedicationOnPrescription(medication, prescription);
