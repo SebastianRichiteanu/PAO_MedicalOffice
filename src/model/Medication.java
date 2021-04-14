@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Medication {
     private String name;
     private double price;
@@ -35,4 +37,19 @@ public class Medication {
     public String toString() {
         return "Name: " + name + "; Price: " + price + "\nSupplier: " + supplier;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Medication medication = (Medication) o;
+        return Objects.equals(name, medication.getName()) && price == medication.getPrice() &&
+            supplier.equals(medication.supplier);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, supplier);
+    }
+
+
 }

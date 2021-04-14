@@ -128,8 +128,6 @@ public class Main {
         for (Doctor d : medicalOffice.getDoctors()) {
             if (d != null)
                 System.out.println(d);
-
-
         }
 
     }

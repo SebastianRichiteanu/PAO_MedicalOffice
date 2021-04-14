@@ -104,7 +104,7 @@ public class MedicalOfficeService {
 
     public void updateLocation (Supplier supplier, String location) { supplierService.updateLocation(supplier, location); }
 
-    public Boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
+    public boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
         return prescriptionService.isMedicationOnPrescription(medication, prescription);
     }
 

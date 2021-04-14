@@ -32,15 +32,17 @@ public class PersonService {
     public Person searchPersonByFullName (MedicalOffice medicalOffice, String name, String surname) {
         Person src = null;
         for (Person p : medicalOffice.getPeople())
-            if (p != null && p.getName().equals(name) && p.getSurname().equals(surname))
+            if (p != null && p.getName().equals(name) && p.getSurname().equals(surname)) {
                 src = p;
+            }
         return src;
     }
     private int getNumberOfPeople(MedicalOffice medicalOffice) {
         int numberOfPeople = 0;
         for (Person p : medicalOffice.getPeople())
-            if (p != null)
+            if (p != null) {
                 numberOfPeople++;
+            }
         return numberOfPeople;
     }
 }
