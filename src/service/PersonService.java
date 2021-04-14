@@ -1,12 +1,12 @@
 package service;
 
 import model.MedicalOffice;
+import model.Patient;
 import model.Person;
 
 public class PersonService {
     public void addPerson (MedicalOffice medicalOffice, Person person) {
-        int nextAvailableIndex = getNumberOfPeople(medicalOffice);
-        medicalOffice.getPeople()[nextAvailableIndex] = person;
+        medicalOffice.getPeople().add(person);
     }
 
     public void updateName (Person person, String name) {
@@ -37,6 +37,7 @@ public class PersonService {
             }
         return src;
     }
+
     private int getNumberOfPeople(MedicalOffice medicalOffice) {
         int numberOfPeople = 0;
         for (Person p : medicalOffice.getPeople())
@@ -44,5 +45,12 @@ public class PersonService {
                 numberOfPeople++;
             }
         return numberOfPeople;
+    }
+
+    public void printPeople(MedicalOffice medicalOffice) {
+        for (Person p : medicalOffice.getPeople())
+            if (p != null) {
+                System.out.println(p);
+            }
     }
 }

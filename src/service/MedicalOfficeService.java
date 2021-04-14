@@ -123,4 +123,16 @@ public class MedicalOfficeService {
     public int numberOfPrescriptionPerMedication (MedicalOffice medicalOffice, Medication medication) {
         return prescriptionService.numberOfPrescriptionPerMedication(medicalOffice, medication);
     }
+
+    public void printPeople(MedicalOffice medicalOffice) {
+        personService.printPeople(medicalOffice);
+    }
+
+    public void printDoctors(MedicalOffice medicalOffice) {
+        doctorService.printDoctors(medicalOffice);
+    }
+
+    public void printPatients(MedicalOffice medicalOffice) {
+        patientService.printPatients(medicalOffice);
+    }
 }

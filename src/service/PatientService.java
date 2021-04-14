@@ -1,12 +1,12 @@
 package service;
 
+import model.Doctor;
 import model.MedicalOffice;
 import model.Patient;
 
 public class PatientService {
     public void addPatient (MedicalOffice medicalOffice, Patient patient) {
-        int nextAvailableIndex = getNumberOfPatients(medicalOffice);
-        medicalOffice.getPatients()[nextAvailableIndex] = patient;
+        medicalOffice.getPatients().add(patient);
     }
 
     public Patient searchPatientByFullName (MedicalOffice medicalOffice, String name, String surname) {
@@ -29,6 +29,13 @@ public class PatientService {
                 numberOfPatients++;
             }
         return numberOfPatients;
+    }
+
+    public void printPatients(MedicalOffice medicalOffice) {
+        for (Patient p : medicalOffice.getPatients())
+            if (p != null) {
+                System.out.println(p);
+            }
     }
 
 }

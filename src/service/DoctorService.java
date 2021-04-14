@@ -8,17 +8,7 @@ import java.util.*;
 
 public class DoctorService {
     public void addDoctor (MedicalOffice medicalOffice, Doctor doctor) {
-        int nextAvailableIndex = getNumberOfDoctors(medicalOffice);
-        medicalOffice.getDoctors()[nextAvailableIndex] = doctor;
-
-        Arrays.sort(medicalOffice.getDoctors(), (d1, d2) -> {
-            if (d1 == null) {
-                if (d2 == null)
-                    return 0;
-                return 1;
-            }
-            return (int) (d2.getSalary() - d1.getSalary());
-        });
+        medicalOffice.getDoctors().add(doctor);
     }
 
     public Doctor searchDoctorByFullName(MedicalOffice medicalOffice, String name, String surname) {
@@ -45,5 +35,12 @@ public class DoctorService {
                 numberOfDoctors++;
             }
         return numberOfDoctors;
+    }
+
+    public void printDoctors(MedicalOffice medicalOffice) {
+        for (Doctor d : medicalOffice.getDoctors())
+            if (d != null) {
+                System.out.println(d);
+            }
     }
 }

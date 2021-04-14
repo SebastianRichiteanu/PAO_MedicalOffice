@@ -5,8 +5,7 @@ import model.Medication;
 
 public class MedicationService {
     public void addMedication (MedicalOffice medicalOffice, Medication medication) {
-        int nextAvailableIndex = getNumberOfMedications(medicalOffice);
-        medicalOffice.getMedications()[nextAvailableIndex] = medication;
+        medicalOffice.getMedications().add(medication);
     }
 
     public void updateName (Medication medication, String name) {

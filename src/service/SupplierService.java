@@ -7,8 +7,8 @@ import model.Supplier;
 public class SupplierService {
 
     public void addSupplier (MedicalOffice medicalOffice, Supplier supplier) {
-        int nextAvailableIndex = getNumberOfSuppliers(medicalOffice);
-        medicalOffice.getSuppliers()[nextAvailableIndex] = supplier;
+        //int nextAvailableIndex = getNumberOfSuppliers(medicalOffice);
+        medicalOffice.getSuppliers().add(supplier);
     }
 
     public void updateName (Supplier supplier, String name) { supplier.setName(name); }

@@ -1,6 +1,7 @@
 package model;
 
-public class Person {
+
+public abstract class Person implements Comparable<Person> {
     private String name;
     private String surname;
     private int age;
@@ -59,5 +60,25 @@ public class Person {
     public String toString() {
         return "Name: " + name + "; Surname: " + surname + "; Age: " +
                 age + "; Address: " + address + "; phoneNo: " + phoneNo;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        if (this.surname == null && ((Person) o).getSurname() == null)
+            return 0;
+        if (this.surname == null)
+            return 1;
+        if (((Person) o).getSurname() == null)
+            return -1;
+        if (this.surname.compareTo(((Person) o).getSurname()) == 0) {
+            if (this.name == null && ((Person) o).getName() == null)
+                return 0;
+            if (this.name == null)
+                return 1;
+            if (((Person) o).getName() == null)
+                return -1;
+            return this.name.compareTo(((Person) o).getName());
+        }
+        return this.surname.compareTo(((Person) o).getSurname());
     }
 }

@@ -1,64 +1,72 @@
 package model;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MedicalOffice {
-    private final int length = 100;
-    private Person[] people = new Person[length];
-    private Doctor[] doctors = new Doctor[length];
-    private Patient[] patients = new Patient[length];
-    private Medication[] medications = new Medication[length];
-    private Prescription[] prescriptions = new Prescription[length];
-    private Appointment[] appointments = new Appointment[length];
-    private Supplier[] suppliers = new Supplier[length];
 
-    public Person[] getPeople() {
+    private Set<Person> people = new TreeSet<>();
+    private Set<Doctor> doctors = new TreeSet<>();
+    private Set<Patient> patients = new TreeSet<>();
+    private List<Medication> medications = new ArrayList<>();
+    private List<Prescription> prescriptions = new ArrayList<>();
+    private List<Appointment> appointments = new ArrayList<>();
+    private List<Supplier> suppliers = new ArrayList<>();
+
+    public Set<Person> getPeople() {
         return people;
     }
 
-    public void setPeople(Person[] people) {
+    public void setPeople(Set<Person> people) {
         this.people = people;
     }
 
-    public Doctor[] getDoctors() {
+    public Set<Doctor> getDoctors() {
         return doctors;
     }
 
-    public void setDoctors(Doctor[] doctors) {
+    public void setDoctors(Set<Doctor> doctors) {
         this.doctors = doctors;
     }
 
-    public Patient[] getPatients() {
+    public Set<Patient> getPatients() {
         return patients;
     }
 
-    public void setPatients(Patient[] patients) {
+    public void setPatients(Set<Patient> patients) {
         this.patients = patients;
     }
 
-    public Medication[] getMedications() {
+    public List<Medication> getMedications() {
         return medications;
     }
 
-    public void setMedications(Medication[] medications) {
+    public void setMedications(List<Medication> medications) {
         this.medications = medications;
     }
 
-    public Prescription[] getPrescriptions() {
+    public List<Prescription> getPrescriptions() {
         return prescriptions;
     }
 
-    public void setPrescriptions(Prescription[] prescriptions) {
+    public void setPrescriptions(List<Prescription> prescriptions) {
         this.prescriptions = prescriptions;
     }
 
-    public Appointment[] getAppointments() {
+    public List<Appointment> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(Appointment[] appointments) {
+    public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
 
-    public Supplier[] getSuppliers() { return suppliers; }
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
 
-    public void setSuppliers(Supplier[] suppliers) { this.suppliers = suppliers; }
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
 }

@@ -12,9 +12,6 @@ public class Main {
 
         // Add to "DB"
 
-        Person person = new Person("person_name","person_surname",1,"person_address","person_phone");
-        medicalOfficeService.addPerson(medicalOffice, person);
-
         Doctor doctor = new Doctor ("doctor_name","doctor_surname",2,"doctor_address","doctor_phone",2,"special");
         medicalOfficeService.addDoctor(medicalOffice, doctor);
 
@@ -35,26 +32,22 @@ public class Main {
 
         // Check if they are in "DB"
         System.out.println("People:");
-        System.out.println(medicalOffice.getPeople()[0]);
-        System.out.println(medicalOffice.getPeople()[1]);
-        System.out.println(medicalOffice.getPeople()[2]);
+        medicalOfficeService.printPeople(medicalOffice);
         System.out.println("Doctor:");
-        System.out.println(medicalOffice.getDoctors()[0]);
+        medicalOfficeService.printDoctors(medicalOffice);
         System.out.println("Patient:");
-        System.out.println(medicalOffice.getPatients()[0]);
+        medicalOfficeService.printPatients(medicalOffice);
         System.out.println("Medication:");
-        System.out.println(medicalOffice.getMedications()[0]);
+        System.out.println(medicalOffice.getMedications().get(0));
         System.out.println("Prescription:");
-        System.out.println(medicalOffice.getPrescriptions()[0]);
+        System.out.println(medicalOffice.getPrescriptions().get(0));
         System.out.println("Appointment:");
-        System.out.println(medicalOffice.getAppointments()[0]);
+        System.out.println(medicalOffice.getAppointments().get(0));
         System.out.println("Supplier:");
-        System.out.println(medicalOffice.getSuppliers()[0]);
+        System.out.println(medicalOffice.getSuppliers().get(0));
 
         // Search by FullName
 
-        System.out.println("PersonByFullName:");
-        System.out.println(medicalOfficeService.searchPersonByFullName(medicalOffice,"person_name","person_surname"));
         System.out.println("DoctorByFullName:");
         System.out.println(medicalOfficeService.searchDoctorByFullName(medicalOffice, "doctor_name", "doctor_surname"));
         System.out.println("PatientByFullName:");
@@ -64,19 +57,17 @@ public class Main {
 
             // People
 
-        medicalOfficeService.updateName(person, "person_name2");
-        medicalOfficeService.updateSurname(person,"person_surname2");
-        medicalOfficeService.updateAge(person,999);
-        medicalOfficeService.updateAddress(person,"person_address2");
-        medicalOfficeService.updatePhoneNo(person, "person_phone2");
+        medicalOfficeService.updateName(doctor, "doctor_name2");
+        medicalOfficeService.updateSurname(doctor, "doctor_surname2");
+        medicalOfficeService.updateAge(doctor,999);
+        medicalOfficeService.updateAddress(doctor,"doctor_address2");
+        medicalOfficeService.updatePhoneNo(doctor, "doctor_phone2");
         medicalOfficeService.updateSalary(doctor, 999);
         medicalOfficeService.updateSpecialization(doctor, "special2");
         medicalOfficeService.updateCondition(patient,"condition2");
 
         System.out.println("New People:");
-        System.out.println(medicalOffice.getPeople()[0]);
-        System.out.println(medicalOffice.getPeople()[1]);
-        System.out.println(medicalOffice.getPeople()[2]);
+        medicalOfficeService.printPeople(medicalOffice);
 
             // Medication
 
@@ -84,14 +75,14 @@ public class Main {
         medicalOfficeService.updatePrice(medication, 999);
 
         System.out.println("New Medication:");
-        System.out.println(medicalOffice.getMedications()[0]);
+        System.out.println(medicalOffice.getMedications().get(0));
 
             // Prescription
 
         medicalOfficeService.updateDate(prescription,"prescription_date2");
 
         System.out.println("New Prescription:");
-        System.out.println(medicalOffice.getPrescriptions()[0]);
+        System.out.println(medicalOffice.getPrescriptions().get(0));
 
 
         // Add medication to prescription + check
@@ -119,16 +110,13 @@ public class Main {
 
         // Add new doctors to "test" the sorted array
 
-        Doctor doctor1 = new Doctor ("doctor1_name","doctor1_surname",1,"doctor1_address","doctor1_phone",1,"special1");
+        Doctor doctor1 = new Doctor ("doctor1_name","b_surname",1,"doctor1_address","doctor1_phone",1,"special1");
         medicalOfficeService.addDoctor(medicalOffice, doctor1);
-        Doctor doctor2 = new Doctor ("doctor2_name","doctor2_surname",2,"doctor2_address","doctor2_phone",2,"special2");
+        Doctor doctor2 = new Doctor ("doctor2_name","a_surname",2,"doctor2_address","doctor2_phone",2,"special2");
         medicalOfficeService.addDoctor(medicalOffice, doctor2);
 
 
-        for (Doctor d : medicalOffice.getDoctors()) {
-            if (d != null)
-                System.out.println(d);
-        }
+        medicalOfficeService.printDoctors(medicalOffice);
 
     }
 

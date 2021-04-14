@@ -5,8 +5,7 @@ import model.*;
 
 public class AppointmentService {
     public void addAppointment (MedicalOffice medicalOffice, Appointment appointment) {
-        int nextAvailableIndex = getNumberOfAppointments(medicalOffice);
-        medicalOffice.getAppointments()[nextAvailableIndex] = appointment;
+        medicalOffice.getAppointments().add(appointment);
     }
 
     public void updatePrescription (Appointment appointment, Prescription prescription) {
