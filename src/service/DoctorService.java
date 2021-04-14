@@ -19,15 +19,14 @@ public class DoctorService {
             }
             return (int) (d2.getSalary() - d1.getSalary());
         });
-
-
     }
 
     public Doctor searchDoctorByFullName(MedicalOffice medicalOffice, String name, String surname) {
         Doctor doc = null;
         for (Doctor d : medicalOffice.getDoctors())
-            if (d != null && d.getName().equals(name) && d.getSurname().equals(surname))
+            if (d != null && d.getName().equals(name) && d.getSurname().equals(surname)) {
                 doc = d;
+            }
         return doc;
     }
 
@@ -42,8 +41,9 @@ public class DoctorService {
     private int getNumberOfDoctors(MedicalOffice medicalOffice) {
         int numberOfDoctors = 0;
         for (Doctor d : medicalOffice.getDoctors())
-            if (d != null)
+            if (d != null) {
                 numberOfDoctors++;
+            }
         return numberOfDoctors;
     }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Supplier {
     private String name;
     private String location;
@@ -21,5 +23,22 @@ public class Supplier {
     @Override
     public String toString() {
         return "Name: " + name + "; Location: " + location;
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Supplier supplier = (Supplier) o;
+        return Objects.equals(name,supplier.getName()) && Objects.equals(location, supplier.getLocation());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name,location);
     }
 }

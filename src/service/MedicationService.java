@@ -20,8 +20,9 @@ public class MedicationService {
     private int getNumberOfMedications(MedicalOffice medicalOffice) {
         int numberOfMedications = 0;
         for (Medication m : medicalOffice.getMedications())
-            if (m != null)
+            if (m != null) {
                 numberOfMedications++;
+            }
         return numberOfMedications;
     }
 }

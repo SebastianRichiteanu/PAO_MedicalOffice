@@ -14,11 +14,12 @@ public class PrescriptionService {
         prescription.setDate(date);
     }
 
-    public Boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
+    public boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
         for (Medication m : prescription.getMedications())
-            if (m == medication)
-                return Boolean.TRUE;
-        return Boolean.FALSE;
+            if (m == medication) {
+                return true;
+            }
+        return false;
     }
 
     public void addMedicationToPrescription (Medication medication, Prescription prescription) {
@@ -31,8 +32,9 @@ public class PrescriptionService {
         for (Prescription p : medicalOffice.getPrescriptions())
             if (p != null) {
                 for (Medication m : p.getMedications())
-                    if (m == medication)
+                    if (m != null && m.equals(medication)) {
                         numberOfPrescriptions++;
+                    }
             }
         return numberOfPrescriptions;
     }
@@ -40,17 +42,18 @@ public class PrescriptionService {
     private int getNumberOfPrescriptions(MedicalOffice medicalOffice) {
         int numberOfPrescriptions = 0;
         for (Prescription p : medicalOffice.getPrescriptions())
-            if (p != null)
+            if (p != null) {
                 numberOfPrescriptions++;
+            }
         return numberOfPrescriptions;
     }
 
     private int getNumberOfMedicationsOnPrescription(Prescription prescription) {
         int numberOfMedications = 0;
         for (Medication m : prescription.getMedications())
-            if (m != null)
+            if (m != null) {
                 numberOfMedications++;
-
+            }
         return numberOfMedications;
     }
 

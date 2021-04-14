@@ -18,8 +18,9 @@ public class SupplierService {
     private int getNumberOfSuppliers(MedicalOffice medicalOffice) {
         int numberOfSuppliers = 0;
         for (Supplier p : medicalOffice.getSuppliers())
-            if (p != null)
+            if (p != null) {
                 numberOfSuppliers++;
+            }
         return numberOfSuppliers;
     }
 }
