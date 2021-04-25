@@ -22,6 +22,10 @@ public class AuditService {
         if(!Files.exists(Paths.get(FILE_PATH))) {
             try {
                 Files.createFile(Paths.get(FILE_PATH));
+                BufferedWriter writer = Files.newBufferedWriter(Paths.get(FILE_PATH),
+                        StandardOpenOption.APPEND);
+                writer.write("nume_actiune,timestamp\n");
+                writer.flush();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
