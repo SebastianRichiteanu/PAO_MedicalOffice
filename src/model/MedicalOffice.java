@@ -69,4 +69,5 @@ public class MedicalOffice {
     public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
     }
+
 }

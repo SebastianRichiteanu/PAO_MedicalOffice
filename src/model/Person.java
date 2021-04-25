@@ -1,6 +1,5 @@
 package model;
 
-
 public abstract class Person implements Comparable<Person> {
     private String name;
     private String surname;

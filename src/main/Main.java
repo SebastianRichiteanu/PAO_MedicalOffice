@@ -20,6 +20,9 @@ public class Main {
 
         Supplier supplier = new Supplier("supplier_name","supplier_location");
         medicalOfficeService.addSupplier(medicalOffice, supplier);
+        medicalOfficeService.updateName(supplier,"supplier_name2");
+        medicalOfficeService.updateLocation(supplier,"supplier_location2");
+
 
         Medication medication = new Medication("medication_name",4, supplier);
         medicalOfficeService.addMedication(medicalOffice, medication);
