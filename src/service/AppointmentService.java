@@ -21,6 +21,13 @@ public class AppointmentService {
         return numberOfAppointments;
     }
 
+    public void printAppointments(MedicalOffice medicalOffice) {
+        for (Appointment a : medicalOffice.getAppointments())
+            if (a != null) {
+                System.out.println(a);
+            }
+    }
+
     private int getNumberOfAppointments(MedicalOffice medicalOffice) {
         int numberOfAppointments = 0;
         for (Appointment a : medicalOffice.getAppointments())

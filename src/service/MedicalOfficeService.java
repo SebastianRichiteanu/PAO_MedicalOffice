@@ -4,6 +4,7 @@ import model.MedicalOffice;
 import model.*;
 
 import javax.print.Doc;
+import java.util.Set;
 
 public class MedicalOfficeService {
     private final PersonService personService = new PersonService();
@@ -14,7 +15,8 @@ public class MedicalOfficeService {
     private final AppointmentService appointmentService = new AppointmentService();
     private final SupplierService supplierService = new SupplierService();
     private final AuditService auditService = new AuditService();
-
+    private final ReadService readService = ReadService.getInstance();
+    private final WriteService writeService = WriteService.getInstance();
 
     public void addDoctor (MedicalOffice medicalOffice, Doctor doctor) {
         auditService.logEvent("addDoctor");
@@ -46,6 +48,11 @@ public class MedicalOfficeService {
     public void addSupplier (MedicalOffice medicalOffice, Supplier supplier) {
         auditService.logEvent("addSupplier");
         supplierService.addSupplier(medicalOffice, supplier);
+    }
+
+    public Supplier searchSupplierByName (MedicalOffice medicalOffice, String name) {
+        auditService.logEvent("searchSupplierByName");
+        return supplierService.searchSupplierByName(medicalOffice,name);
     }
 
     public Person searchPersonByFullName (MedicalOffice medicalOffice, String name, String surname) {
@@ -103,6 +110,10 @@ public class MedicalOfficeService {
         patientService.updateCondition(patient, condition);
     }
 
+    public Medication searchMedicationByName (MedicalOffice medicalOffice, String name) {
+        return medicationService.searchMedicationByName(medicalOffice, name);
+    }
+
     public void updateName (Medication medication, String name) {
         auditService.logEvent("updateName");
         medicationService.updateName(medication, name);
@@ -126,6 +137,10 @@ public class MedicalOfficeService {
     public void updateLocation (Supplier supplier, String location) {
         auditService.logEvent("updateLocation");
         supplierService.updateLocation(supplier, location);
+    }
+
+    public Prescription getPrescriptionById (MedicalOffice medicalOffice, int id) {
+        return prescriptionService.getPrescriptionById(medicalOffice,id);
     }
 
     public boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
@@ -158,7 +173,6 @@ public class MedicalOfficeService {
         personService.printPeople(medicalOffice);
     }
 
-
     public void printDoctors(MedicalOffice medicalOffice) {
         auditService.logEvent("printDoctors");
         doctorService.printDoctors(medicalOffice);
@@ -167,5 +181,46 @@ public class MedicalOfficeService {
     public void printPatients(MedicalOffice medicalOffice) {
         auditService.logEvent("printPatients");
         patientService.printPatients(medicalOffice);
+    }
+
+    public void printSuppliers(MedicalOffice medicalOffice) {
+        auditService.logEvent("printSuppliers");
+        supplierService.printSuppliers(medicalOffice);
+    }
+
+    public void printAppointments(MedicalOffice medicalOffice) {
+        auditService.logEvent("printAppointments");
+        appointmentService.printAppointments(medicalOffice);
+    }
+
+    public void printMedications (MedicalOffice medicalOffice) {
+        auditService.logEvent("printMedications");
+        medicationService.printMedications(medicalOffice);
+    }
+
+    public void printPrecriptions (MedicalOffice medicalOffice) {
+        auditService.logEvent("printPrescriptions");
+        medicationService.printMedications(medicalOffice);
+    }
+
+    public void read(MedicalOffice medicalOffice) {
+        auditService.logEvent("read");
+        readService.readDoctors(medicalOffice, this);
+        readService.readPatients(medicalOffice, this);
+        readService.readSupplier(medicalOffice, this);
+        readService.readMedication(medicalOffice,this);
+        readService.readAppointment(medicalOffice, this);
+        readService.readPrescription(medicalOffice,this);
+    }
+
+    public void write(MedicalOffice medicalOffice) {
+        auditService.logEvent("write");
+        writeService.writeDoctors(medicalOffice.getDoctors());
+        writeService.writePatients(medicalOffice.getPatients());
+        writeService.writeSuppliers(medicalOffice.getSuppliers());
+        writeService.writeMedication(medicalOffice.getMedications());
+        writeService.writeAppointments(medicalOffice.getAppointments());
+        writeService.writePrescriptions(medicalOffice.getPrescriptions());
+        writeService.writePersons(medicalOffice.getPeople());
     }
 }

@@ -1,13 +1,19 @@
 package model;
 
 public class Prescription {
+    private int id;
     private String date;
     private Medication[] medications;
 
-    public Prescription(String date, Medication[] medications) {
+    public Prescription(int id, String date, Medication[] medications) {
+        this.id = id;
         this.date = date;
         this.medications = medications;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getDate() {
         return date;
@@ -27,7 +33,7 @@ public class Prescription {
 
     @Override
     public String toString() {
-        String str = "Date: " + date;
+        String str = "Id: " + id + "Date: " + date;
         if (medications != null)
             for (Medication m : medications)
                 if (m != null) {

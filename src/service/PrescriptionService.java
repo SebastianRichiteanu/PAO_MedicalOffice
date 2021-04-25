@@ -1,8 +1,6 @@
 package service;
 
-import model.MedicalOffice;
-import model.Medication;
-import model.Prescription;
+import model.*;
 
 public class PrescriptionService {
     public void addPrescription (MedicalOffice medicalOffice, Prescription prescription) {
@@ -27,6 +25,13 @@ public class PrescriptionService {
         prescription.getMedications()[nextAvailableIndex] = medication;
     }
 
+    public void printPrecriptions (MedicalOffice medicalOffice) {
+        for (Prescription p : medicalOffice.getPrescriptions())
+            if (p != null) {
+                System.out.println(p);
+            }
+    }
+
     public int numberOfPrescriptionPerMedication (MedicalOffice medicalOffice, Medication medication) {
         int numberOfPrescriptions = 0;
         for (Prescription p : medicalOffice.getPrescriptions())
@@ -37,6 +42,14 @@ public class PrescriptionService {
                     }
             }
         return numberOfPrescriptions;
+    }
+
+    public Prescription getPrescriptionById (MedicalOffice medicalOffice, int id) {
+        for (Prescription p : medicalOffice.getPrescriptions())
+            if (p.getId() == id) {
+                return p;
+            }
+        return null;
     }
 
     private int getNumberOfPrescriptions(MedicalOffice medicalOffice) {

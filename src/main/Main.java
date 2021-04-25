@@ -6,11 +6,50 @@ import service.MedicalOfficeService;
 import javax.print.Doc;
 
 public class Main {
+
     public static void main(String[] args) {
+
+
+//        MedicalOffice medicalOffice = new MedicalOffice();
+//        MedicalOfficeService medicalOfficeService = new MedicalOfficeService();
+//        Doctor doctor = new Doctor ("csv_doctor_name","csv_doctor_surname",2,"csv_doctor_address","csv_doctor_phone",2,"csv_special");
+//        medicalOfficeService.addDoctor(medicalOffice, doctor);
+//        Patient patient = new Patient("csv_patient_name","csv_patient_surname",3,"csv_patient_address","csv_patient_phone","csv_condition");
+//        medicalOfficeService.addPatient(medicalOffice, patient);
+//        Supplier supplier = new Supplier("csv_supplier_name","csv_supplier_location");
+//        medicalOfficeService.addSupplier(medicalOffice, supplier);
+//        Medication medication = new Medication("csv_medication_name",4, supplier);
+//        medicalOfficeService.addMedication(medicalOffice, medication);
+//        Prescription prescription = new Prescription(0, "csv_prescription_date",new Medication[100]);
+//        medicalOfficeService.addMedicationToPrescription(medication,prescription);
+//        medicalOfficeService.addPrescription(medicalOffice, prescription);
+//        Appointment appointment = new Appointment(patient, doctor, prescription,"csv_appointment_date");
+//        medicalOfficeService.addAppointment(medicalOffice, appointment);
+//        medicalOfficeService.write(medicalOffice);
+
+//
+//        medicalOfficeService.read(medicalOffice);
+//        System.out.print("People\n\n");
+//        medicalOfficeService.printPeople(medicalOffice);
+//        System.out.print("Doctors\n\n");
+//        medicalOfficeService.printDoctors(medicalOffice);
+//        System.out.print("Patients\n\n");
+//        medicalOfficeService.printPatients(medicalOffice);
+//        System.out.print("Medication\n\n");
+//        medicalOfficeService.printMedications(medicalOffice);
+//        System.out.print("Prescription\n\n");
+//        medicalOfficeService.printPrecriptions(medicalOffice);
+//        System.out.print("Appointments\n\n");
+//        medicalOfficeService.printAppointments(medicalOffice);
+//        System.out.print("Suppliers\n\n");
+//        medicalOfficeService.printSuppliers(medicalOffice);
+
+
+
         MedicalOffice medicalOffice = new MedicalOffice();
         MedicalOfficeService medicalOfficeService = new MedicalOfficeService();
 
-        // Add to "DB"
+        medicalOfficeService.read(medicalOffice);
 
         Doctor doctor = new Doctor ("doctor_name","doctor_surname",2,"doctor_address","doctor_phone",2,"special");
         medicalOfficeService.addDoctor(medicalOffice, doctor);
@@ -27,7 +66,7 @@ public class Main {
         Medication medication = new Medication("medication_name",4, supplier);
         medicalOfficeService.addMedication(medicalOffice, medication);
 
-        Prescription prescription = new Prescription("prescription_date",new Medication[100]);
+        Prescription prescription = new Prescription(1,"prescription_date",new Medication[100]);
         medicalOfficeService.addPrescription(medicalOffice, prescription);
 
         Appointment appointment = new Appointment(patient, doctor, prescription,"appointment_date");
@@ -93,7 +132,7 @@ public class Main {
         medicalOfficeService.addMedicationToPrescription(medication, prescription);
         System.out.println(medicalOfficeService.isMedicationOnPrescription(medication, prescription));
 
-        Prescription prescription1 = new Prescription("prescription_date999",new Medication[100]);
+        Prescription prescription1 = new Prescription(2,"prescription_date999",new Medication[100]);
         medicalOfficeService.addPrescription(medicalOffice, prescription1);
         medicalOfficeService.updatePrescription(appointment,prescription1);
 
@@ -121,7 +160,12 @@ public class Main {
 
         medicalOfficeService.printDoctors(medicalOffice);
 
+
+        //medicalOfficeService.printAppointments(medicalOffice);
+        medicalOfficeService.write(medicalOffice);
+
     }
+
 
 
 
