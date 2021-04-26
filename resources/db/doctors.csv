@@ -1,6 +1,4 @@
 name,surname,age,address,phoneNo,salary,specialization
 doctor2_name,a_surname,2,doctor2_address,doctor2_phone,2.0,special2
 doctor1_name,b_surname,1,doctor1_address,doctor1_phone,1.0,special1
-csv_doctor_name,csv_doctor_surname,2,csv_doctor_address,csv_doctor_phone,2.0,csv_special
-doctor_name2,doctor_surname2,999,doctor_address2,doctor_phone2,999.0,special2
 doctor_name2,doctor_surname2,999,doctor_address2,doctor_phone2,999.0,special2

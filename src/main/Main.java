@@ -158,10 +158,6 @@ public class Main {
         medicalOfficeService.addDoctor(medicalOffice, doctor2);
 
 
-        medicalOfficeService.printDoctors(medicalOffice);
-
-
-        //medicalOfficeService.printAppointments(medicalOffice);
         medicalOfficeService.write(medicalOffice);
 
     }

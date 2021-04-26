@@ -1,1 +1,3 @@
 patientName,patientSurname,doctorName,doctorSurname,prescriptionId,date
+patient_name,patient_surname,doctor_name2,doctor_surname2,2,appointment_date
+patient_name,patient_surname,doctor_name2,doctor_surname2,1,appointment_date999

@@ -209,8 +209,8 @@ public class MedicalOfficeService {
         readService.readPatients(medicalOffice, this);
         readService.readSupplier(medicalOffice, this);
         readService.readMedication(medicalOffice,this);
-        readService.readAppointment(medicalOffice, this);
         readService.readPrescription(medicalOffice,this);
+        readService.readAppointment(medicalOffice, this);
     }
 
     public void write(MedicalOffice medicalOffice) {
