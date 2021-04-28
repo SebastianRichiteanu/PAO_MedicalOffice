@@ -7,14 +7,26 @@ import javax.print.Doc;
 import java.util.Set;
 
 public class MedicalOfficeService {
-    private final PersonService personService = new PersonService();
-    private final DoctorService doctorService = new DoctorService();
-    private final PatientService patientService = new PatientService();
-    private final MedicationService medicationService = new MedicationService();
-    private final PrescriptionService prescriptionService = new PrescriptionService();
-    private final AppointmentService appointmentService = new AppointmentService();
-    private final SupplierService supplierService = new SupplierService();
-    private final AuditService auditService = new AuditService();
+
+    private static MedicalOfficeService INSTANCE;
+
+    private MedicalOfficeService () {}
+
+    public static MedicalOfficeService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new MedicalOfficeService();
+        }
+        return INSTANCE;
+    }
+
+    private final PersonService personService = PersonService.getInstance();
+    private final DoctorService doctorService = DoctorService.getInstance();
+    private final PatientService patientService = PatientService.getInstance();
+    private final MedicationService medicationService = MedicationService.getInstance();
+    private final PrescriptionService prescriptionService = PrescriptionService.getInstance();
+    private final AppointmentService appointmentService = AppointmentService.getInstance();
+    private final SupplierService supplierService = SupplierService.getInstance();
+    private final AuditService auditService = AuditService.getInstance();
     private final ReadService readService = ReadService.getInstance();
     private final WriteService writeService = WriteService.getInstance();
 

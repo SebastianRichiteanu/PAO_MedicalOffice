@@ -4,6 +4,17 @@ import model.*;
 
 
 public class AppointmentService {
+    private static AppointmentService INSTANCE;
+
+    private AppointmentService () {}
+
+    public static AppointmentService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new AppointmentService();
+        }
+        return INSTANCE;
+    }
+
     public void addAppointment (MedicalOffice medicalOffice, Appointment appointment) {
         medicalOffice.getAppointments().add(appointment);
     }

@@ -8,6 +8,18 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class AuditService {
+    private static AuditService INSTANCE;
+
+    private AuditService () {}
+
+    public static AuditService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new AuditService();
+        }
+        return INSTANCE;
+    }
+
+
     private static final String DIRECTORY_PATH = "resources/audit";
     private static final String FILE_PATH = DIRECTORY_PATH + "/audit.csv";
 

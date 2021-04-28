@@ -1,10 +1,23 @@
 package model;
+import service.MedicalOfficeService;
+
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.List;
 import java.util.ArrayList;
 
 public class MedicalOffice {
+
+    private static MedicalOffice INSTANCE;
+
+    private MedicalOffice () {}
+
+    public static MedicalOffice getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new MedicalOffice();
+        }
+        return INSTANCE;
+    }
 
     private Set<Person> people = new TreeSet<>();
     private Set<Doctor> doctors = new TreeSet<>();

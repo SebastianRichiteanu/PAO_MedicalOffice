@@ -10,11 +10,14 @@ import java.nio.file.Paths;
 
 public class ReadService {
     private static final String DIRECTORY_PATH = "resources/db";
-    private static ReadService INSTANCE = new ReadService();
+    private static ReadService INSTANCE;
 
-    private ReadService() {}
+    private ReadService () {}
 
     public static ReadService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new ReadService();
+        }
         return INSTANCE;
     }
 

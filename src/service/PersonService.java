@@ -5,6 +5,18 @@ import model.Patient;
 import model.Person;
 
 public class PersonService {
+
+    private static PersonService INSTANCE;
+
+    private PersonService () {}
+
+    public static PersonService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new PersonService();
+        }
+        return INSTANCE;
+    }
+
     public void addPerson (MedicalOffice medicalOffice, Person person) {
         medicalOffice.getPeople().add(person);
     }

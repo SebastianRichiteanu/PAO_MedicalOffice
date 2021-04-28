@@ -13,12 +13,15 @@ import java.util.Set;
 import java.util.List;
 
 public class WriteService {
+    private static WriteService INSTANCE;
     private static final String DIRECTORY_PATH = "resources/db";
-    private static final WriteService INSTANCE = new WriteService();
 
-    private WriteService() {}
+    private WriteService () {}
 
     public static WriteService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new WriteService();
+        }
         return INSTANCE;
     }
 

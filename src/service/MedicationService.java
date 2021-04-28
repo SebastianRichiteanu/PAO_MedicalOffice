@@ -5,6 +5,17 @@ import model.MedicalOffice;
 import model.Medication;
 
 public class MedicationService {
+    private static MedicationService INSTANCE;
+
+    private MedicationService () {}
+
+    public static MedicationService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new MedicationService();
+        }
+        return INSTANCE;
+    }
+
     public void addMedication (MedicalOffice medicalOffice, Medication medication) {
         medicalOffice.getMedications().add(medication);
     }

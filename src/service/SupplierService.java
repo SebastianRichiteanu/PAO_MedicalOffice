@@ -7,6 +7,18 @@ import model.Supplier;
 
 public class SupplierService {
 
+    private static SupplierService INSTANCE;
+
+    private SupplierService () {}
+
+    public static SupplierService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new SupplierService();
+        }
+        return INSTANCE;
+    }
+
+
     public void addSupplier (MedicalOffice medicalOffice, Supplier supplier) {
         //int nextAvailableIndex = getNumberOfSuppliers(medicalOffice);
         medicalOffice.getSuppliers().add(supplier);

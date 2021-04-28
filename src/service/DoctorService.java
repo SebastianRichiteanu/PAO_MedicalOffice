@@ -7,6 +7,17 @@ import model.Person;
 import java.util.*;
 
 public class DoctorService {
+    private static DoctorService INSTANCE;
+
+    private DoctorService () {}
+
+    public static DoctorService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new DoctorService();
+        }
+        return INSTANCE;
+    }
+
     public void addDoctor (MedicalOffice medicalOffice, Doctor doctor) {
         medicalOffice.getDoctors().add(doctor);
     }

@@ -3,6 +3,21 @@ package service;
 import model.*;
 
 public class PrescriptionService {
+
+    private static PrescriptionService INSTANCE;
+
+    private PrescriptionService () {}
+
+    public static PrescriptionService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new PrescriptionService();
+        }
+        return INSTANCE;
+    }
+
+
+
+
     public void addPrescription (MedicalOffice medicalOffice, Prescription prescription) {
        // int nextAvailableIndex = getNumberOfPrescriptions(medicalOffice);
         medicalOffice.getPrescriptions().add(prescription);

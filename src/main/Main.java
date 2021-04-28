@@ -46,8 +46,8 @@ public class Main {
 
 
 
-        MedicalOffice medicalOffice = new MedicalOffice();
-        MedicalOfficeService medicalOfficeService = new MedicalOfficeService();
+        MedicalOffice medicalOffice = MedicalOffice.getInstance();
+        MedicalOfficeService medicalOfficeService = MedicalOfficeService.getInstance();
 
         medicalOfficeService.read(medicalOffice);
 
