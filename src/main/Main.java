@@ -129,8 +129,14 @@ public class Main {
 
         // Add medication to prescription + check
 
+        Medication medication2 = new Medication("medication_name3",222,supplier);
+        medicalOfficeService.addMedication(medicalOffice,medication2);
+
         medicalOfficeService.addMedicationToPrescription(medication, prescription);
+        medicalOfficeService.addMedicationToPrescription(medication2, prescription);
         System.out.println(medicalOfficeService.isMedicationOnPrescription(medication, prescription));
+
+
 
         Prescription prescription1 = new Prescription(2,"prescription_date999",new Medication[100]);
         medicalOfficeService.addPrescription(medicalOffice, prescription1);
