@@ -3,11 +3,15 @@ package service;
 import model.Doctor;
 import model.MedicalOffice;
 import model.Medication;
+import repository.MedicationRepository;
 
 public class MedicationService {
     private static MedicationService INSTANCE;
+    private MedicationRepository medicationRepository;
 
-    private MedicationService () {}
+    private MedicationService () {
+        this.medicationRepository = new MedicationRepository();
+    }
 
     public static MedicationService getInstance() {
         if (INSTANCE == null) {
@@ -16,8 +20,12 @@ public class MedicationService {
         return INSTANCE;
     }
 
-    public void addMedication (MedicalOffice medicalOffice, Medication medication) {
-        medicalOffice.getMedications().add(medication);
+    public void addMedication (Medication medication) {
+        medicationRepository.addMedication(medication);
+    }
+
+    public void removeMedication (Medication medication) {
+        medicationRepository.removeMedication(medication);
     }
 
     public void updateName (Medication medication, String name) {

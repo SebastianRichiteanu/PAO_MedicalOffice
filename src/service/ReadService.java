@@ -37,7 +37,7 @@ public class ReadService {
                 double salary = Double.parseDouble(atr[5]);
                 String specialization = atr[6];
                 Doctor doctor = new Doctor(name,surname,age,address,phoneNo,salary,specialization);
-                medicalOfficeService.addDoctor(medicalOffice, doctor);
+                medicalOfficeService.addDoctor(doctor);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name '" + FILE_PATH + "' doesn't exist.");
@@ -61,7 +61,7 @@ public class ReadService {
                 String phoneNo = atr[4];
                 String condition = atr[5];
                 Patient patient = new Patient(name,surname,age,address,phoneNo,condition);
-                medicalOfficeService.addPatient(medicalOffice, patient);
+                medicalOfficeService.addPatient(patient);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name '" + FILE_PATH + "' doesn't exist.");
@@ -81,7 +81,7 @@ public class ReadService {
                 String name = atr[0];
                 String location = atr[1];
                 Supplier supplier = new Supplier(name,location);
-                medicalOfficeService.addSupplier(medicalOffice,supplier);
+                medicalOfficeService.addSupplier(supplier);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name '" + FILE_PATH + "' doesn't exist.");
@@ -102,7 +102,7 @@ public class ReadService {
                 double price = Double.parseDouble(atr[1]);
                 String supplierName = atr[2];
                 Medication medication = new Medication(name,price,medicalOfficeService.searchSupplierByName(medicalOffice,supplierName));
-                medicalOfficeService.addMedication(medicalOffice,medication);
+                medicalOfficeService.addMedication(medication);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name '" + FILE_PATH + "' doesn't exist.");

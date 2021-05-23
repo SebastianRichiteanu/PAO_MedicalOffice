@@ -3,12 +3,15 @@ package service;
 import model.MedicalOffice;
 import model.Patient;
 import model.Person;
+import repository.PersonRepository;
 
 public class PersonService {
-
     private static PersonService INSTANCE;
+    private PersonRepository personRepository;
 
-    private PersonService () {}
+    private PersonService () {
+        this.personRepository = new PersonRepository();
+    }
 
     public static PersonService getInstance() {
         if (INSTANCE == null) {
@@ -17,8 +20,12 @@ public class PersonService {
         return INSTANCE;
     }
 
-    public void addPerson (MedicalOffice medicalOffice, Person person) {
-        medicalOffice.getPeople().add(person);
+    public void addPerson (Person person) {
+        personRepository.addPerson(person);
+    }
+
+    public void removePerson(Person person) {
+        personRepository.removePerson(person);
     }
 
     public void updateName (Person person, String name) {

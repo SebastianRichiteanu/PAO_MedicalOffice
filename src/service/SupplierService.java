@@ -4,12 +4,16 @@ import model.MedicalOffice;
 import model.Patient;
 import model.Prescription;
 import model.Supplier;
+import repository.SupplierRepository;
 
 public class SupplierService {
 
     private static SupplierService INSTANCE;
+    private SupplierRepository supplierRepository;
 
-    private SupplierService () {}
+    private SupplierService () {
+        this.supplierRepository = new SupplierRepository();
+    }
 
     public static SupplierService getInstance() {
         if (INSTANCE == null) {
@@ -19,10 +23,11 @@ public class SupplierService {
     }
 
 
-    public void addSupplier (MedicalOffice medicalOffice, Supplier supplier) {
-        //int nextAvailableIndex = getNumberOfSuppliers(medicalOffice);
-        medicalOffice.getSuppliers().add(supplier);
+    public void addSupplier (Supplier supplier) {
+        supplierRepository.addSupplier(supplier);
     }
+
+    public void removeSupplier (Supplier supplier) { supplierRepository.removeSupplier(supplier); }
 
     public void updateName (Supplier supplier, String name) { supplier.setName(name); }
 

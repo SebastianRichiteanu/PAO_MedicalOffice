@@ -2,4 +2,5 @@ name,surname,age,address,phoneNo
 doctor2_name,a_surname,2,doctor2_address,doctor2_phone
 doctor1_name,b_surname,1,doctor1_address,doctor1_phone
 doctor_name2,doctor_surname2,999,doctor_address2,doctor_phone2
+doctor_name2,doctor_surname2,999,doctor_address2,doctor_phone2
 patient_name,patient_surname,3,patient_address,patient_phone

@@ -3,11 +3,15 @@ package service;
 import model.Doctor;
 import model.MedicalOffice;
 import model.Patient;
+import repository.PatientRepository;
 
 public class PatientService {
     private static PatientService INSTANCE;
+    private PatientRepository patientRepository;
 
-    private PatientService () {}
+    private PatientService () {
+        this.patientRepository = new PatientRepository();
+    }
 
     public static PatientService getInstance() {
         if (INSTANCE == null) {
@@ -16,9 +20,11 @@ public class PatientService {
         return INSTANCE;
     }
 
-    public void addPatient (MedicalOffice medicalOffice, Patient patient) {
-        medicalOffice.getPatients().add(patient);
+    public void addPatient (Patient patient) {
+        patientRepository.addPatient(patient);
     }
+
+    public void removePatient(Patient patient) { patientRepository.removePatient(patient); }
 
     public Patient searchPatientByFullName (MedicalOffice medicalOffice, String name, String surname) {
         Patient patient = null;

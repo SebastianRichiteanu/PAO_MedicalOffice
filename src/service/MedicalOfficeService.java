@@ -30,21 +30,21 @@ public class MedicalOfficeService {
     private final ReadService readService = ReadService.getInstance();
     private final WriteService writeService = WriteService.getInstance();
 
-    public void addDoctor (MedicalOffice medicalOffice, Doctor doctor) {
+    public void addDoctor (Doctor doctor) {
         auditService.logEvent("addDoctor");
-        personService.addPerson(medicalOffice, doctor);
-        doctorService.addDoctor(medicalOffice, doctor);
+        personService.addPerson(doctor);
+        doctorService.addDoctor(doctor);
     }
 
-    public void addPatient (MedicalOffice medicalOffice, Patient patient) {
+    public void addPatient (Patient patient) {
         auditService.logEvent("addPatient");
-        personService.addPerson(medicalOffice, patient);
-        patientService.addPatient(medicalOffice, patient);
+        personService.addPerson(patient);
+        patientService.addPatient(patient);
     }
 
-    public void addMedication (MedicalOffice medicalOffice, Medication medication) {
+    public void addMedication (Medication medication) {
         auditService.logEvent("addMedication");
-        medicationService.addMedication(medicalOffice, medication);
+        medicationService.addMedication(medication);
     }
 
     public void addPrescription (MedicalOffice medicalOffice, Prescription prescription) {
@@ -57,9 +57,31 @@ public class MedicalOfficeService {
         appointmentService.addAppointment(medicalOffice, appointment);
     }
 
-    public void addSupplier (MedicalOffice medicalOffice, Supplier supplier) {
+    public void addSupplier (Supplier supplier) {
         auditService.logEvent("addSupplier");
-        supplierService.addSupplier(medicalOffice, supplier);
+        supplierService.addSupplier(supplier);
+    }
+
+    public void removeDoctor (Doctor doctor) {
+        auditService.logEvent("removeDoctor");
+        personService.removePerson(doctor);
+        doctorService.removeDoctor(doctor);
+    }
+
+    public void removePatient(Patient patient) {
+        auditService.logEvent("removePatient");
+        personService.removePerson(patient);
+        patientService.removePatient(patient);
+    }
+
+    public void removeMedication(Medication medication) {
+        auditService.logEvent("removeMedication");
+        medicationService.removeMedication(medication);
+    }
+
+    public void removeSupplier(Supplier supplier) {
+        auditService.logEvent("removeSupplier");
+        supplierService.removeSupplier(supplier);
     }
 
     public Supplier searchSupplierByName (MedicalOffice medicalOffice, String name) {

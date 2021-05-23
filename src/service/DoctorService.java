@@ -3,13 +3,17 @@ package service;
 import model.Doctor;
 import model.MedicalOffice;
 import model.Person;
+import repository.DoctorRepository;
 
 import java.util.*;
 
 public class DoctorService {
     private static DoctorService INSTANCE;
+    private DoctorRepository doctorRepository;
 
-    private DoctorService () {}
+    private DoctorService () {
+        this.doctorRepository = new DoctorRepository();
+    }
 
     public static DoctorService getInstance() {
         if (INSTANCE == null) {
@@ -18,8 +22,12 @@ public class DoctorService {
         return INSTANCE;
     }
 
-    public void addDoctor (MedicalOffice medicalOffice, Doctor doctor) {
-        medicalOffice.getDoctors().add(doctor);
+    public void addDoctor (Doctor doctor) {
+        doctorRepository.addDoctor(doctor);
+    }
+
+    public void removeDoctor (Doctor doctor) {
+        doctorRepository.removeDoctor(doctor);
     }
 
     public Doctor searchDoctorByFullName(MedicalOffice medicalOffice, String name, String surname) {
