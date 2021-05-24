@@ -3,8 +3,7 @@ package service;
 import model.MedicalOffice;
 import model.*;
 
-import javax.print.Doc;
-import java.util.Set;
+import java.sql.Date;
 
 public class MedicalOfficeService {
 
@@ -47,14 +46,14 @@ public class MedicalOfficeService {
         medicationService.addMedication(medication);
     }
 
-    public void addPrescription (MedicalOffice medicalOffice, Prescription prescription) {
+    public void addPrescription (Prescription prescription) {
         auditService.logEvent("addPrescription");
-        prescriptionService.addPrescription(medicalOffice, prescription);
+        prescriptionService.addPrescription(prescription);
     }
 
-    public void addAppointment (MedicalOffice medicalOffice, Appointment appointment) {
+    public void addAppointment (Appointment appointment) {
         auditService.logEvent("addAppointment");
-        appointmentService.addAppointment(medicalOffice, appointment);
+        appointmentService.addAppointment(appointment);
     }
 
     public void addSupplier (Supplier supplier) {
@@ -82,6 +81,16 @@ public class MedicalOfficeService {
     public void removeSupplier(Supplier supplier) {
         auditService.logEvent("removeSupplier");
         supplierService.removeSupplier(supplier);
+    }
+
+    public void removePrescription(Prescription prescription) {
+        auditService.logEvent("removePrescription");
+        prescriptionService.removePrescription(prescription);
+    }
+
+    public void removeAppointment(Appointment appointment) {
+        auditService.logEvent("removeAppointment");
+        appointmentService.removeAppointment(appointment);
     }
 
     public Supplier searchSupplierByName (MedicalOffice medicalOffice, String name) {
@@ -158,7 +167,7 @@ public class MedicalOfficeService {
         medicationService.updatePrice(medication, price);
     }
 
-    public void updateDate (Prescription prescription, String date) {
+    public void updateDate (Prescription prescription, Date date) {
         auditService.logEvent("updateDate");
         prescriptionService.updateDate(prescription, date);
     }
@@ -173,8 +182,8 @@ public class MedicalOfficeService {
         supplierService.updateLocation(supplier, location);
     }
 
-    public Prescription getPrescriptionById (MedicalOffice medicalOffice, int id) {
-        return prescriptionService.getPrescriptionById(medicalOffice,id);
+    public Prescription getPrescriptionByBarCode (MedicalOffice medicalOffice, String barCode) {
+        return prescriptionService.getPrescriptionByBarCode(medicalOffice,barCode);
     }
 
     public boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {

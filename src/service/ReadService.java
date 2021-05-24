@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
+import java.sql.Date;
 
 public class ReadService {
     private static final String DIRECTORY_PATH = "resources/db";
@@ -123,13 +124,13 @@ public class ReadService {
                 String patientSurname = atr[1];
                 String doctorName = atr[2];
                 String doctorSurname = atr[3];
-                int prescriptionId = Integer.parseInt(atr[4]);
-                String date = atr[5];
+                String prescriptionBarCode = atr[4];
+                Date date = Date.valueOf(atr[5]);
                 Appointment appointment = new Appointment(medicalOfficeService.searchPatientByFullName(medicalOffice, patientName,patientSurname),
                         medicalOfficeService.searchDoctorByFullName(medicalOffice,doctorName,doctorSurname),
-                        medicalOfficeService.getPrescriptionById(medicalOffice,prescriptionId),
+                        medicalOfficeService.getPrescriptionByBarCode(medicalOffice,prescriptionBarCode),
                         date);
-                medicalOfficeService.addAppointment(medicalOffice, appointment);
+                medicalOfficeService.addAppointment(appointment);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name '" + FILE_PATH + "' doesn't exist.");
@@ -146,15 +147,15 @@ public class ReadService {
             line = reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] atr = line.split(",");
-                int id = Integer.parseInt(atr[0]);
-                String date = atr[1];
+                String barCode = atr[0];
+                Date date = Date.valueOf(atr[1]);
                 String[] medications = atr[2].split(",");
-                Prescription prescription = new Prescription(id, date, new Medication[100]);
+                Prescription prescription = new Prescription(barCode, date, new Medication[100]);
                 for (String med : medications) {
                     Medication m = medicalOfficeService.searchMedicationByName(medicalOffice, med);
                     medicalOfficeService.addMedicationToPrescription(m, prescription);
                 }
-                medicalOfficeService.addPrescription(medicalOffice, prescription);
+                medicalOfficeService.addPrescription(prescription);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name '" + FILE_PATH + "' doesn't exist.");

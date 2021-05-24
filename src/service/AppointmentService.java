@@ -1,12 +1,14 @@
 package service;
 
 import model.*;
+import repository.AppointmentRepository;
 
 
 public class AppointmentService {
     private static AppointmentService INSTANCE;
+    private AppointmentRepository appointmentRepository;
 
-    private AppointmentService () {}
+    private AppointmentService () { this.appointmentRepository = new AppointmentRepository(); }
 
     public static AppointmentService getInstance() {
         if (INSTANCE == null) {
@@ -15,8 +17,12 @@ public class AppointmentService {
         return INSTANCE;
     }
 
-    public void addAppointment (MedicalOffice medicalOffice, Appointment appointment) {
-        medicalOffice.getAppointments().add(appointment);
+    public void addAppointment (Appointment appointment) {
+        appointmentRepository.addAppointment(appointment);
+    }
+
+    public void removeAppointment(Appointment appointment) {
+        appointmentRepository.removeAppointment(appointment);
     }
 
     public void updatePrescription (Appointment appointment, Prescription prescription) {

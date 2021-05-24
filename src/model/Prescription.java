@@ -1,25 +1,27 @@
 package model;
 
+import java.sql.Date;
+
 public class Prescription {
-    private int id;
-    private String date;
+    private String barCode;
+    private Date date;
     private Medication[] medications;
 
-    public Prescription(int id, String date, Medication[] medications) {
-        this.id = id;
+    public Prescription(String barCode, Date date, Medication[] medications) {
+        this.barCode = barCode;
         this.date = date;
         this.medications = medications;
     }
 
-    public int getId() { return id; }
+    public String getBarCode() { return barCode; }
 
-    public void setId(int id) { this.id = id; }
+    public void setBarCode(String barCode) { this.barCode = barCode; }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -33,7 +35,7 @@ public class Prescription {
 
     @Override
     public String toString() {
-        String str = "Id: " + id + "Date: " + date;
+        String str = "BarCode: " + barCode + "Date: " + date;
         if (medications != null)
             for (Medication m : medications)
                 if (m != null) {

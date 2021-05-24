@@ -4,6 +4,7 @@ import model.*;
 import service.MedicalOfficeService;
 
 import javax.print.Doc;
+import java.sql.Date;
 
 public class Main {
 
@@ -66,16 +67,23 @@ public class Main {
         Medication medication = new Medication("medication_name",4, supplier);
         medicalOfficeService.addMedication(medication);
 
+        Medication[] v_med = new Medication[100];
+        v_med[0] = medication;
+
+        Prescription prescription = new Prescription("1234", Date.valueOf("2020-02-13"),v_med);
+        medicalOfficeService.addPrescription(prescription);
+
+        Appointment appointment = new Appointment(patient, doctor, prescription,Date.valueOf("2020-02-13"));
+        medicalOfficeService.addAppointment(appointment);
+
 //        medicalOfficeService.removeDoctor(doctor);
 //        medicalOfficeService.removePatient(patient);
 //        medicalOfficeService.removeMedication(medication);
 //        medicalOfficeService.removeSupplier(supplier);
-//
-//        Prescription prescription = new Prescription(1,"prescription_date",new Medication[100]);
-//        medicalOfficeService.addPrescription(medicalOffice, prescription);
-//
-//        Appointment appointment = new Appointment(patient, doctor, prescription,"appointment_date");
-//        medicalOfficeService.addAppointment(medicalOffice, appointment);
+//        medicalOfficeService.removePrescription(prescription);
+//        medicalOfficeService.removeAppointment(appointment);
+
+
 //
 //        // Check if they are in "DB"
 //        System.out.println("People:");

@@ -40,6 +40,8 @@ public class MedicationRepository {
         return -1;
     }
 
+
+
     public void removeMedication (Medication medication) {
         String sql = "delete from medications where name = '" + medication.getName() + "'";
         try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {

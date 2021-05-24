@@ -1,12 +1,14 @@
 package model;
 
+import java.sql.Date;
+
 public class Appointment {
     private Patient patient;
     private Doctor doctor;
     private Prescription prescription;
-    private String date;
+    private Date date;
 
-    public Appointment(Patient patient, Doctor doctor, Prescription prescription, String date) {
+    public Appointment(Patient patient, Doctor doctor, Prescription prescription, Date date) {
         this.patient = patient;
         this.doctor = doctor;
         this.prescription = prescription;
@@ -25,9 +27,9 @@ public class Appointment {
 
     public void setPrescription(Prescription prescription) { this.prescription = prescription; }
 
-    public String getDate() { return date; }
+    public Date getDate() { return date; }
 
-    public void setDate(String date) { this.date = date; }
+    public void setDate(Date date) { this.date = date; }
 
     @Override
     public String toString() {

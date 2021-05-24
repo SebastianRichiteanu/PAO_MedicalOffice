@@ -209,7 +209,7 @@ public class WriteService {
                 if (appointment != null) {
                     writer.write(appointment.getPatient().getName() + "," + appointment.getPatient().getSurname() + "," +
                             appointment.getDoctor().getName() + "," + appointment.getDoctor().getSurname() + "," +
-                            appointment.getPrescription().getId() + "," + appointment.getDate() + "\n");
+                            appointment.getPrescription().getBarCode() + "," + appointment.getDate() + "\n");
                     writer.flush();
                 }
         } catch (IOException e) {
@@ -245,7 +245,7 @@ public class WriteService {
                         if (m != null) {
                             medicationsName.append(m.getName()).append(",");
                         }
-                    writer.write(prescription.getId() + "," + prescription.getDate() + "," + medicationsName + "\n");
+                    writer.write(prescription.getBarCode() + "," + prescription.getDate() + "," + medicationsName + "\n");
                     writer.flush();
                 }
         } catch (IOException e) {

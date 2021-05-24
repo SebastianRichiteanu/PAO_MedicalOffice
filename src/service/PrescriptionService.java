@@ -1,12 +1,19 @@
 package service;
 
 import model.*;
+import repository.PrescriptionRepository;
+
+import java.sql.Date;
 
 public class PrescriptionService {
 
     private static PrescriptionService INSTANCE;
 
-    private PrescriptionService () {}
+    private PrescriptionRepository prescriptionRepository;
+
+    private PrescriptionService () {
+        this.prescriptionRepository = new PrescriptionRepository();
+    }
 
     public static PrescriptionService getInstance() {
         if (INSTANCE == null) {
@@ -15,15 +22,15 @@ public class PrescriptionService {
         return INSTANCE;
     }
 
-
-
-
-    public void addPrescription (MedicalOffice medicalOffice, Prescription prescription) {
-       // int nextAvailableIndex = getNumberOfPrescriptions(medicalOffice);
-        medicalOffice.getPrescriptions().add(prescription);
+    public void addPrescription (Prescription prescription) {
+        prescriptionRepository.addPrescription(prescription);
     }
 
-    public void updateDate (Prescription prescription, String date) {
+    public void removePrescription(Prescription prescription) {
+        prescriptionRepository.removePrescription(prescription);
+    }
+
+    public void updateDate (Prescription prescription, Date date) {
         prescription.setDate(date);
     }
 
@@ -59,9 +66,9 @@ public class PrescriptionService {
         return numberOfPrescriptions;
     }
 
-    public Prescription getPrescriptionById (MedicalOffice medicalOffice, int id) {
+    public Prescription getPrescriptionByBarCode (MedicalOffice medicalOffice, String barCode) {
         for (Prescription p : medicalOffice.getPrescriptions())
-            if (p.getId() == id) {
+            if (p.getBarCode() == barCode) {
                 return p;
             }
         return null;
