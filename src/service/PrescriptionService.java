@@ -1,18 +1,23 @@
 package service;
 
 import model.*;
+import repository.GetRepository;
 import repository.PrescriptionRepository;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
 
 public class PrescriptionService {
 
     private static PrescriptionService INSTANCE;
 
     private PrescriptionRepository prescriptionRepository;
+    private GetRepository getRepository;
 
     private PrescriptionService () {
         this.prescriptionRepository = new PrescriptionRepository();
+        this.getRepository = new GetRepository();
     }
 
     public static PrescriptionService getInstance() {
@@ -31,15 +36,29 @@ public class PrescriptionService {
     }
 
     public void updateDate (Prescription prescription, Date date) {
-        prescription.setDate(date);
+        int id = prescriptionRepository.getPrescriptionId(prescription);
+        if (id == -1) {
+            System.out.println("This prescription does not exist");
+        } else {
+            prescriptionRepository.updatePrescriptionById(id, "date", date.toString());
+            prescription.setDate(date);
+        }
+    }
+
+    public void updateBarCode (Prescription prescription, String barCode) {
+        int id = prescriptionRepository.getPrescriptionId(prescription);
+        if (id == -1) {
+            System.out.println("This prescription does not exist");
+        } else {
+            prescriptionRepository.updatePrescriptionById(id, "barCode", barCode);
+            prescription.setBarCode(barCode);
+        }
     }
 
     public boolean isMedicationOnPrescription (Medication medication, Prescription prescription) {
-        for (Medication m : prescription.getMedications())
-            if (m == medication) {
-                return true;
-            }
-        return false;
+        int idMed = prescriptionRepository.getMedicationIdByName(medication.getName());
+        int idPresc = prescriptionRepository.getPrescriptionId(prescription);
+        return prescriptionRepository.isMedicationOnPrescription(idMed, idPresc);
     }
 
     public void addMedicationToPrescription (Medication medication, Prescription prescription) {
@@ -54,17 +73,7 @@ public class PrescriptionService {
             }
     }
 
-    public int numberOfPrescriptionPerMedication (MedicalOffice medicalOffice, Medication medication) {
-        int numberOfPrescriptions = 0;
-        for (Prescription p : medicalOffice.getPrescriptions())
-            if (p != null) {
-                for (Medication m : p.getMedications())
-                    if (m != null && m.equals(medication)) {
-                        numberOfPrescriptions++;
-                    }
-            }
-        return numberOfPrescriptions;
-    }
+    public Optional<Prescription> getPrescriptionById(int id) { return getRepository.getPrescriptionById(id); }
 
     public Prescription getPrescriptionByBarCode (MedicalOffice medicalOffice, String barCode) {
         for (Prescription p : medicalOffice.getPrescriptions())
@@ -74,22 +83,21 @@ public class PrescriptionService {
         return null;
     }
 
-    private int getNumberOfPrescriptions(MedicalOffice medicalOffice) {
-        int numberOfPrescriptions = 0;
-        for (Prescription p : medicalOffice.getPrescriptions())
-            if (p != null) {
-                numberOfPrescriptions++;
-            }
-        return numberOfPrescriptions;
+    public void printPrescriptions () {
+        List<Prescription> prescriptions = getRepository.getAllPrescriptions();
+        if (prescriptions != null) {
+            for (Prescription p : prescriptions)
+                if (p != null) {
+                    System.out.println(p);
+                }
+        }
     }
 
-    private int getNumberOfMedicationsOnPrescription(Prescription prescription) {
-        int numberOfMedications = 0;
-        for (Medication m : prescription.getMedications())
-            if (m != null) {
-                numberOfMedications++;
-            }
-        return numberOfMedications;
+    public int getNumberOfMedicationsOnPrescription(Prescription prescription) {
+        int id = prescriptionRepository.getPrescriptionId(prescription);
+        return prescriptionRepository.getNumberOfMedicationsOnPrescription(id);
     }
+
+
 
 }

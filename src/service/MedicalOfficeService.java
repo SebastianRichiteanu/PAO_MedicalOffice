@@ -9,6 +9,7 @@ public class MedicalOfficeService {
 
     private static MedicalOfficeService INSTANCE;
 
+
     private MedicalOfficeService () {}
 
     public static MedicalOfficeService getInstance() {
@@ -93,49 +94,69 @@ public class MedicalOfficeService {
         appointmentService.removeAppointment(appointment);
     }
 
-    public Supplier searchSupplierByName (MedicalOffice medicalOffice, String name) {
+    public Supplier searchSupplierByName (String name) {
         auditService.logEvent("searchSupplierByName");
-        return supplierService.searchSupplierByName(medicalOffice,name);
+        return supplierService.searchSupplierByName(name);
     }
 
-    public Person searchPersonByFullName (MedicalOffice medicalOffice, String name, String surname) {
-        auditService.logEvent("searchPersonByFullName");
-        return personService.searchPersonByFullName(medicalOffice, name, surname);
-    }
-
-    public Doctor searchDoctorByFullName (MedicalOffice medicalOffice, String name, String surname) {
+    public Doctor searchDoctorByFullName (String name, String surname) {
         auditService.logEvent("searchDoctorByFullName");
-        return doctorService.searchDoctorByFullName(medicalOffice, name, surname);
+        return doctorService.searchDoctorByFullName(name, surname);
     }
 
-    public Patient searchPatientByFullName (MedicalOffice medicalOffice, String name, String surname) {
+    public Patient searchPatientByFullName (String name, String surname) {
         auditService.logEvent("searchPatientByFullName");
-        return patientService.searchPatientByFullName(medicalOffice, name, surname);
+        return patientService.searchPatientByFullName(name, surname);
     }
 
     public void updateName (Person person, String name) {
         auditService.logEvent("updateName");
         personService.updateName(person, name);
+        if (person instanceof Doctor) {
+            doctorService.updateName((Doctor) person, name);
+        } else if (person instanceof Patient) {
+            patientService.updateName((Patient) person, name);
+        }
     }
 
     public void updateSurname (Person person, String surname) {
         auditService.logEvent("updateSurname");
         personService.updateSurname(person, surname);
+        if (person instanceof Doctor) {
+            doctorService.updateSurname((Doctor) person, surname);
+        } else if (person instanceof Patient) {
+            patientService.updateSurname((Patient) person, surname);
+        }
     }
 
     public void updateAge (Person person, int age) {
         auditService.logEvent("updateAge");
         personService.updateAge(person, age);
+        if (person instanceof Doctor) {
+            doctorService.updateAge((Doctor) person, age);
+        } else if (person instanceof Patient) {
+            patientService.updateAge((Patient) person, age);
+        }
     }
 
     public void updateAddress (Person person, String address) {
         auditService.logEvent("updateAddress");
         personService.updateAddress(person, address);
+        if (person instanceof Doctor) {
+            doctorService.updateAddress((Doctor) person, address);
+        } else if (person instanceof Patient) {
+            patientService.updateAddress((Patient) person, address);
+        }
     }
 
     public void updatePhoneNo (Person person, String phoneNo) {
         auditService.logEvent("updatePhoneNo");
-        personService.updatePhonNo(person, phoneNo);
+        personService.updatePhoneNo(person, phoneNo);
+        if (person instanceof Doctor) {
+            doctorService.updatePhoneNo((Doctor) person, phoneNo);
+        } else if (person instanceof Patient) {
+            patientService.updatePhoneNo((Patient) person, phoneNo);
+        }
     }
 
     public void updateSalary (Doctor doctor, double salary) {
@@ -201,49 +222,54 @@ public class MedicalOfficeService {
         appointmentService.updatePrescription(appointment, prescription);
     }
 
-    public int numberOfAppointmentsPerDoctor (MedicalOffice medicalOffice, Doctor doctor) {
+    public void updateAppointmentDate (Appointment appointment, Date date) {
+        auditService.logEvent("updateAppointmentDate");
+        appointmentService.updateDate(appointment, date);
+    }
+
+    public int numberOfAppointmentsPerDoctor (Doctor doctor) {
         auditService.logEvent("numberOfAppointmentsPerDoctor");
-        return appointmentService.numberOfAppointmentsPerDoctor(medicalOffice, doctor);
+        return appointmentService.numberOfAppointmentsPerDoctor(doctor);
     }
 
-    public int numberOfPrescriptionPerMedication (MedicalOffice medicalOffice, Medication medication) {
-        auditService.logEvent("numberOfPrescriptionPerMedication");
-        return prescriptionService.numberOfPrescriptionPerMedication(medicalOffice, medication);
+    public int getNumberOfMedicationsOnPrescription (Prescription prescription) {
+        auditService.logEvent("getNumberOfMedicationsOnPrescription");
+        return prescriptionService.getNumberOfMedicationsOnPrescription(prescription);
     }
 
-    public void printPeople(MedicalOffice medicalOffice) {
+    public void printPeople() {
         auditService.logEvent("printPeople");
-        personService.printPeople(medicalOffice);
+        personService.printPeople();
     }
 
-    public void printDoctors(MedicalOffice medicalOffice) {
+    public void printDoctors() {
         auditService.logEvent("printDoctors");
-        doctorService.printDoctors(medicalOffice);
+        doctorService.printDoctors();
     }
 
-    public void printPatients(MedicalOffice medicalOffice) {
+    public void printPatients() {
         auditService.logEvent("printPatients");
-        patientService.printPatients(medicalOffice);
+        patientService.printPatients();
     }
 
-    public void printSuppliers(MedicalOffice medicalOffice) {
+    public void printSuppliers() {
         auditService.logEvent("printSuppliers");
-        supplierService.printSuppliers(medicalOffice);
+        supplierService.printSuppliers();
     }
 
-    public void printAppointments(MedicalOffice medicalOffice) {
+    public void printAppointments() {
         auditService.logEvent("printAppointments");
-        appointmentService.printAppointments(medicalOffice);
+        appointmentService.printAppointments();
     }
 
-    public void printMedications (MedicalOffice medicalOffice) {
+    public void printMedications () {
         auditService.logEvent("printMedications");
-        medicationService.printMedications(medicalOffice);
+        medicationService.printMedications();
     }
 
-    public void printPrecriptions (MedicalOffice medicalOffice) {
+    public void printPrecriptions () {
         auditService.logEvent("printPrescriptions");
-        medicationService.printMedications(medicalOffice);
+        prescriptionService.printPrescriptions();
     }
 
     public void read(MedicalOffice medicalOffice) {

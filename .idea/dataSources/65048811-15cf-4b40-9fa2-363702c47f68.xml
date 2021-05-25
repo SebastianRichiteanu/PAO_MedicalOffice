@@ -1207,15 +1207,15 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="348" parent="335" name="id_patient">
+    <index id="348" parent="335" name="appointments_ibfk_1">
       <ColNames>id_patient</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="349" parent="335" name="id_doctor">
+    <index id="349" parent="335" name="appointments_ibfk_2">
       <ColNames>id_doctor</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="350" parent="335" name="id_prescription">
+    <index id="350" parent="335" name="appointments_ibfk_3">
       <ColNames>id_prescription</ColNames>
       <Type>btree</Type>
     </index>
@@ -1228,16 +1228,22 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <ColNames>id_patient</ColNames>
       <RefTableName>patients</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="353" parent="335" name="appointments_ibfk_2">
       <ColNames>id_doctor</ColNames>
       <RefTableName>doctors</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="354" parent="335" name="appointments_ibfk_3">
       <ColNames>id_prescription</ColNames>
       <RefTableName>prescriptions</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>set-null</OnUpdate>
+      <OnDelete>set-null</OnDelete>
     </foreign-key>
     <column id="355" parent="336" name="id">
       <Position>1</Position>
@@ -1330,7 +1336,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="373" parent="338" name="id_prescription">
+    <index id="373" parent="338" name="medtopresc_ibfk_2">
       <ColNames>id_prescription</ColNames>
       <Type>btree</Type>
     </index>
@@ -1344,11 +1350,15 @@ id_prescription</ColNames>
       <ColNames>id_medication</ColNames>
       <RefTableName>medications</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="376" parent="338" name="medtopresc_ibfk_2">
       <ColNames>id_prescription</ColNames>
       <RefTableName>prescriptions</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="377" parent="339" name="id">
       <Position>1</Position>

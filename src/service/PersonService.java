@@ -1,16 +1,21 @@
 package service;
 
-import model.MedicalOffice;
-import model.Patient;
-import model.Person;
+import model.*;
+import repository.GetRepository;
 import repository.PersonRepository;
+
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class PersonService {
     private static PersonService INSTANCE;
     private PersonRepository personRepository;
+    private GetRepository getRepository;
 
     private PersonService () {
         this.personRepository = new PersonRepository();
+        this.getRepository = new GetRepository();
     }
 
     public static PersonService getInstance() {
@@ -29,23 +34,48 @@ public class PersonService {
     }
 
     public void updateName (Person person, String name) {
-        person.setName(name);
+        int id = personRepository.getPersonId(person);
+        if (id == -1) {
+            System.out.println("This person does not exist");
+        } else {
+            personRepository.updatePersonById(id, "name", name);
+        }
     }
 
     public void updateSurname (Person person, String surname) {
-        person.setSurname(surname);
+        int id = personRepository.getPersonId(person);
+        if (id == -1) {
+            System.out.println("This person does not exist");
+        } else {
+            personRepository.updatePersonById(id, "surname", surname);
+        }
     }
 
     public void updateAge (Person person, int age) {
-        person.setAge(age);
+        int id = personRepository.getPersonId(person);
+        if (id == -1) {
+            System.out.println("This person does not exist");
+        } else {
+            personRepository.updatePersonById(id, "age", String.valueOf(age));
+        }
     }
 
     public void updateAddress (Person person, String address) {
-        person.setAddress(address);
+        int id = personRepository.getPersonId(person);
+        if (id == -1) {
+            System.out.println("This person does not exist");
+        } else {
+            personRepository.updatePersonById(id, "address", address);
+        }
     }
 
-    public void updatePhonNo (Person person, String phoneNo) {
-        person.setPhoneNo(phoneNo);
+    public void updatePhoneNo (Person person, String phoneNo) {
+        int id = personRepository.getPersonId(person);
+        if (id == -1) {
+            System.out.println("This person does not exist");
+        } else {
+            personRepository.updatePersonById(id, "phoneNo", phoneNo);
+        }
     }
 
     public Person searchPersonByFullName (MedicalOffice medicalOffice, String name, String surname) {
@@ -57,16 +87,17 @@ public class PersonService {
         return src;
     }
 
-    private int getNumberOfPeople(MedicalOffice medicalOffice) {
-        int numberOfPeople = 0;
-        for (Person p : medicalOffice.getPeople())
-            if (p != null) {
-                numberOfPeople++;
-            }
-        return numberOfPeople;
+    public void printPeople() {
+        Set<Person> people = getRepository.getAllPeople();
+        if (people != null) {
+            for (Person p : people)
+                if (p != null) {
+                    System.out.println(p);
+                }
+        }
     }
 
-    public void printPeople(MedicalOffice medicalOffice) {
+    public void printPeople2(MedicalOffice medicalOffice) {
         for (Person p : medicalOffice.getPeople())
             if (p != null) {
                 System.out.println(p);

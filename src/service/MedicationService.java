@@ -1,16 +1,21 @@
 package service;
 
-import model.Doctor;
-import model.MedicalOffice;
-import model.Medication;
+import model.*;
+import repository.GetRepository;
 import repository.MedicationRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 public class MedicationService {
     private static MedicationService INSTANCE;
     private MedicationRepository medicationRepository;
+    private GetRepository getRepository;
+
 
     private MedicationService () {
         this.medicationRepository = new MedicationRepository();
+        this.getRepository = new GetRepository();
     }
 
     public static MedicationService getInstance() {
@@ -29,12 +34,26 @@ public class MedicationService {
     }
 
     public void updateName (Medication medication, String name) {
-        medication.setName(name);
+        int id = medicationRepository.getMedicationId(medication);
+        if (id == -1) {
+            System.out.println("This medication does not exist!");
+        } else {
+            medicationRepository.updateMedicationById(id, "name", name);
+            medication.setName(name);
+        }
     }
 
     public void updatePrice (Medication medication, double price) {
-        medication.setPrice(price);
+        int id = medicationRepository.getMedicationId(medication);
+        if (id == -1) {
+            System.out.println("This medication does not exist!");
+        } else {
+            medicationRepository.updateMedicationById(id, "price", String.valueOf(price));
+            medication.setPrice(price);
+        }
     }
+
+    public Optional<Medication> getMedicationById(int id) { return getRepository.getMedicationById(id); }
 
     public Medication searchMedicationByName (MedicalOffice medicalOffice, String name) {
         for (Medication m : medicalOffice.getMedications())
@@ -44,11 +63,14 @@ public class MedicationService {
         return null;
     }
 
-    public void printMedications (MedicalOffice medicalOffice) {
-        for (Medication m : medicalOffice.getMedications())
-            if (m != null) {
-                System.out.println(m);
-            }
+    public void printMedications () {
+        List<Medication> medications = getRepository.getAllMedications();
+        if (medications != null) {
+            for (Medication m : medications)
+                if (m != null) {
+                    System.out.println(m);
+                }
+        }
     }
 
     private int getNumberOfMedications(MedicalOffice medicalOffice) {
@@ -59,4 +81,5 @@ public class MedicationService {
             }
         return numberOfMedications;
     }
+
 }

@@ -102,7 +102,7 @@ public class ReadService {
                 String name = atr[0];
                 double price = Double.parseDouble(atr[1]);
                 String supplierName = atr[2];
-                Medication medication = new Medication(name,price,medicalOfficeService.searchSupplierByName(medicalOffice,supplierName));
+                Medication medication = new Medication(name,price,medicalOfficeService.searchSupplierByName(supplierName));
                 medicalOfficeService.addMedication(medication);
             }
         } catch (NoSuchFileException e) {
@@ -126,8 +126,8 @@ public class ReadService {
                 String doctorSurname = atr[3];
                 String prescriptionBarCode = atr[4];
                 Date date = Date.valueOf(atr[5]);
-                Appointment appointment = new Appointment(medicalOfficeService.searchPatientByFullName(medicalOffice, patientName,patientSurname),
-                        medicalOfficeService.searchDoctorByFullName(medicalOffice,doctorName,doctorSurname),
+                Appointment appointment = new Appointment(medicalOfficeService.searchPatientByFullName(patientName,patientSurname),
+                        medicalOfficeService.searchDoctorByFullName(doctorName,doctorSurname),
                         medicalOfficeService.getPrescriptionByBarCode(medicalOffice,prescriptionBarCode),
                         date);
                 medicalOfficeService.addAppointment(appointment);

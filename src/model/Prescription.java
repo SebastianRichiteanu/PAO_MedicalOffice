@@ -35,13 +35,17 @@ public class Prescription {
 
     @Override
     public String toString() {
-        String str = "BarCode: " + barCode + "Date: " + date;
-        if (medications != null)
+        String str = "BarCode: " + barCode + " Date: " + date + " ";
+        if (medications != null) {
+            int cnt = 1;
             for (Medication m : medications)
                 if (m != null) {
+                    str += "\nMedication " + cnt + ": ";
                     str += m.toString();
                     str += '\n';
+                    ++cnt;
                 }
+        }
         return str;
     }
 }
